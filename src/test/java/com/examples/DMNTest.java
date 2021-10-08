@@ -4,12 +4,16 @@ import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
+
+import com.examples.flow.Customer;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieRuntimeFactory;
+import org.kie.api.runtime.KieSession;
 import org.kie.dmn.api.core.DMNContext;
 import org.kie.dmn.api.core.DMNModel;
 import org.kie.dmn.api.core.DMNResult;
@@ -21,11 +25,12 @@ import org.kie.dmn.api.core.DMNRuntime;
 public class DMNTest {
 
     static DMNRuntime dmnRuntime;
+    private static KieContainer kcontainer;
 
     @BeforeClass
     public static void beforeAll() {
         KieServices ks = KieServices.Factory.get();
-        KieContainer kcontainer = ks.getKieClasspathContainer();
+        kcontainer = ks.getKieClasspathContainer();
         dmnRuntime = KieRuntimeFactory.of(kcontainer.getKieBase()).get(DMNRuntime.class);
     }
 
@@ -42,5 +47,21 @@ public class DMNTest {
         assertEquals(BigDecimal.valueOf(2), result.getDecisionResultByName("decision").getResult());
         
         System.out.println(result);
+    }
+
+    @Test
+    public void test2() {
+        KieSession ksession = kcontainer.newKieSession();
+        
+        var customer = new Customer();
+        customer.setCartAmount(100);
+        customer.setInitialRating(0);
+
+        var variables = new HashMap<String, Object>(); 
+        variables.put("customer", customer);
+
+        ksession.startProcess("dmn-examples.dmn-flow", variables);
+
+        System.out.println(customer);
     }
 }

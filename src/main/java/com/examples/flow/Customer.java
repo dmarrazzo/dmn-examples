@@ -6,6 +6,11 @@ public class Customer {
     private double cartAmount;
     private double initialRating;
 
+    @Override
+    public String toString() {
+        return String.format("{cartAmount:%s, initialRating:%s}", cartAmount, initialRating);
+    }
+
     // ---------------------------------------------------------------------------------------------------------
     // GETTERS / SETTERS
 

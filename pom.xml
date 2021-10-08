@@ -46,6 +46,11 @@
       <artifactId>kie-dmn-core</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.jbpm</groupId>
+      <artifactId>jbpm-bpmn2</artifactId>
+      <scope>provided</scope>
+    </dependency>
     <!-- test -->
     <dependency>
       <groupId>junit</groupId>
