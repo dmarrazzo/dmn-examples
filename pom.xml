@@ -10,7 +10,6 @@
   <properties>
     <ba.version>7.11.1.redhat-00001</ba.version>
     <version.org.kie>7.52.0.Final-redhat-00008</version.org.kie>
-    <generateDMNModel>yes</generateDMNModel>
     <maven.compiler.target>11</maven.compiler.target>
     <maven.compiler.source>11</maven.compiler.source>
   </properties>
