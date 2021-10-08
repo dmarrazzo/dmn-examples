@@ -1,5 +1,7 @@
 package com.examples.flow;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import org.kie.dmn.feel.lang.FEELProperty;
 
 public class Customer {
@@ -15,6 +17,7 @@ public class Customer {
     // GETTERS / SETTERS
 
     @FEELProperty("cart amount")
+    @JsonProperty("cart amount")
     public double getCartAmount() {
         return cartAmount;
     }
@@ -24,6 +27,7 @@ public class Customer {
     }
 
     @FEELProperty("initial rating")
+    @JsonProperty("initial rating")
     public double getInitialRating() {
         return initialRating;
     }
